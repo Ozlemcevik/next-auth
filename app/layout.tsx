@@ -1,22 +1,17 @@
+'use client';
+
 import './globals.css';
-import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
-import { Providers } from './providers';
-
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'NextAuth App',
-  description: 'JWT + Auth0 + Next.js 14',
-};
+import Navbar from '@/components/Navbar';
+import { SessionProvider } from 'next-auth/react';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers>
+    <html lang="tr">
+      <body>
+        <SessionProvider>
+          <Navbar />
           {children}
-        </Providers>
+        </SessionProvider>
       </body>
     </html>
   );
