@@ -1,6 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
+Ortam Değişkenleri
+
+1. `.env.example` dosyasını kopyalayın:
+
+```bash
+cp .env.example .env.local
+env.local içindeki boş alanlara kendi Auth0 ve NextAuth bilgilerinizi yazın.
 
 First, run the development server:
 
