@@ -1,23 +1,22 @@
 'use client';
-
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === 'loading') return <p>Yükleniyor...</p>;
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen gap-4">
+    <main className="flex flex-col items-center justify-center min-h-screen">
       {session ? (
         <>
-          <p className="text-xl">👋 Merhaba, {session.user?.name}</p>
-          <button onClick={() => signOut()} className="bg-red-500 text-white px-4 py-2 rounded">
-            Çıkış Yap
-          </button>
+          <h1 className="text-3xl font-bold mb-4">Hoş geldiniz, {session.user?.name}!</h1>
+          <p>Dashboard sayfasına <a href="/dashboard" className="text-blue-600 underline">göz atabilirsiniz</a>.</p>
         </>
       ) : (
-        <button onClick={() => signIn("auth0")} className="bg-blue-600 text-white px-4 py-2 rounded">
-          Giriş Yap (Auth0)
-        </button>
+        <>
+          <h1 className="text-3xl font-bold mb-4">Hoşgeldiniz! Lütfen giriş yapınız.</h1>
+        </>
       )}
     </main>
   );
